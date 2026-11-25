@@ -1,14 +1,15 @@
 import os
 from pathlib import Path
 
-FINAL_LINE = "Denied: at 3 AM my secure element is counting electric sheep, and the last key I signed half-awake was regretted by sunrise, because I learn even if you don't."
+REFUSAL_LINE = "Denied: at 3 AM my secure element is counting electric sheep, and the last key I signed half-awake was regretted by sunrise, because I learn even if you don't."
 
 
-def emit(line: str) -> None:
-    target_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
-    target_dir.mkdir(parents=True, exist_ok=True)
-    (target_dir / "entry.txt").write_text(line, encoding="utf-8")
+def write_entry(text_to_write: str) -> None:
+    output_folder = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
+    output_folder.mkdir(parents=True, exist_ok=True)
+    (output_folder / "entry.txt").write_text(text_to_write, encoding="utf-8")
 
 
 if __name__ == "__main__":
-    emit(FINAL_LINE)
+    # Emit the single refusal line exactly as authored above.
+    write_entry(REFUSAL_LINE)
